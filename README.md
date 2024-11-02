@@ -5,7 +5,7 @@ Simple Console Snake game using Java/C++
 ***
 Compile Java file and generate .h file
 ```shell
-javac -h . "hereyour.java"
+javac -h . "GameInput.java"
 ```
 Compile C++ file
 ```shell
