@@ -1,27 +1,38 @@
 import java.util.Random;
 
 public class Apple {
+    private final Random random = new Random();
 
-    public static Random random = new Random();
+    private static final int boardHeight = Constants.BOARD_HEIGHT;
+    private static final int boardWidth = Constants.BOARD_WIDTH;
 
-    public static int boardI;
-    public static int boardJ;
-    public static int appleI;
-    public static int appleJ;
-    Apple(int i,int j){
-        this.boardI=i;
-        this.boardJ=j;
+    private int rowPos;
+    private int colPos;
+
+    public Apple(){
+        rowPos = generateRowPos();
+        colPos = generateColPos();
     }
 
-    public int genI(){
-        return this.appleI = random.nextInt(1000)%(boardI-1)+1;
-    }
-    public int genJ(){
-        return this.appleJ = random.nextInt(1000)%(boardJ-1)+1;
+    public int getRowPos(){
+        return rowPos;
     }
 
-    public boolean eaten(int i,int j){
-        if(i==appleI && j==appleJ)return true;
-        return false;
+    public int getColPos(){
+        return colPos;
+    }
+
+    public int generateRowPos(){
+        rowPos = random.nextInt(boardHeight-2) + 1;
+        return rowPos;
+    }
+
+    public int generateColPos(){
+        colPos = random.nextInt(boardWidth-2) + 1;
+        return colPos;
+    }
+
+    public boolean hasEaten(int headRowPos, int headColPos){
+        return headRowPos == rowPos && headColPos == colPos;
     }
 }
