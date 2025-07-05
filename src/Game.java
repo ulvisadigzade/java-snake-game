@@ -1,14 +1,8 @@
 public class Game {
-    private  int boardHeight = Constants.BOARD_HEIGHT;
-    private  int boardWidth = Constants.BOARD_WIDTH;
-
-
-
-    private Board board = new Board();
-    private GameInput gameInput = new GameInput();
-    private Snake snake = new Snake();
-    private Apple apple = new Apple();
-
+    private final Board board = new Board();
+    private final GameInput gameInput = new GameInput();
+    private final Snake snake = new Snake();
+    private final Apple apple = new Apple();
     private boolean isRunning = true;
 
 
@@ -16,21 +10,21 @@ public class Game {
         while(isRunning){
             board.clear();
             board.print(snake, apple);
+
             char button = gameInput.getChar();
             Direction newDirection = Direction.inputToDirection(button);
-
             snake.updateDirection(newDirection);
 
-            snake.move(Direction.inputToDirection(button));
+            snake.move();
+
             if(snake.hasLost()){
                 isRunning = false;
             }
             else if(snake.hasEaten(apple)){
-                apple.generateRowPos();
-                apple.generateColPos();
+                apple.generateNewPosition();
                 snake.addTail();
             }
-            wait(200);
+            wait(Constants.GAME_DELAY_MS);
         }
     }
 

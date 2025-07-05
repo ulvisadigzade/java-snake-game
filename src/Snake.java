@@ -3,17 +3,19 @@ import java.util.ArrayList;
 public class Snake {
     private final int boardHeight = Constants.BOARD_HEIGHT;
     private final int boardWidth = Constants.BOARD_WIDTH;
+    private final int initialRow = Constants.INITIAL_SNAKE_ROW;
+    private final int initialCol = Constants.INITIAL_SNAKE_COL;
 
     private Direction currentDirection = Direction.LEFT;
     private ArrayList<int[]> snakeBody = new ArrayList<>();
 
 
     public Snake(){
-        snakeBody.add(new int[]{boardHeight /2, boardWidth /2});
-        snakeBody.add(new int[]{boardHeight /2, boardWidth /2+1});
+        snakeBody.add(new int[]{initialRow, initialCol});
+        snakeBody.add(new int[]{initialRow, initialCol+1});
     }
 
-    public void move(Direction newDirection) {
+    public void move() {
         for(int i = snakeBody.size() - 1; i > 0; i--){
             var elem1 = snakeBody.get(i-1);
             snakeBody.set(i,elem1);
@@ -63,8 +65,8 @@ public class Snake {
     }
 
     public boolean contains(int i, int j){
-        for(int [] k: snakeBody){
-            if(k[0]==i && k[1]==j)return true;
+        for(int[] part: snakeBody){
+            if(part[0]==i && part[1]==j)return true;
         }
         return false;
     }

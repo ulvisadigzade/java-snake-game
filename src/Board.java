@@ -1,8 +1,6 @@
 public class Board {
-    private static int boardHeight = Constants.BOARD_HEIGHT;
-    private static int boardWidth = Constants.BOARD_WIDTH;
-
-    private static int [][] board = new int[boardHeight][boardWidth];
+    private final int boardHeight = Constants.BOARD_HEIGHT;
+    private final int boardWidth = Constants.BOARD_WIDTH;
 
 
     public void clear(){

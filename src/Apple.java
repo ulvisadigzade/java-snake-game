@@ -5,13 +5,13 @@ public class Apple {
 
     private static final int boardHeight = Constants.BOARD_HEIGHT;
     private static final int boardWidth = Constants.BOARD_WIDTH;
+    private static final int borderOffset = Constants.BORDER_OFFSET;
 
     private int rowPos;
     private int colPos;
 
     public Apple(){
-        rowPos = generateRowPos();
-        colPos = generateColPos();
+        generateNewPosition();
     }
 
     public int getRowPos(){
@@ -22,14 +22,10 @@ public class Apple {
         return colPos;
     }
 
-    public int generateRowPos(){
-        rowPos = random.nextInt(boardHeight-2) + 1;
-        return rowPos;
-    }
+    public void generateNewPosition(){
+        rowPos = random.nextInt(boardHeight- 2 * borderOffset) + borderOffset;
+        colPos = random.nextInt(boardWidth- 2 * borderOffset) + borderOffset;
 
-    public int generateColPos(){
-        colPos = random.nextInt(boardWidth-2) + 1;
-        return colPos;
     }
 
     public boolean hasEaten(int headRowPos, int headColPos){
