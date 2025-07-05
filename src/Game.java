@@ -8,29 +8,37 @@ public class Game {
 
     public void start(){
         while(isRunning){
-            board.clear();
-            board.print(snake, apple);
-
-            char button = gameInput.getChar();
-            Direction newDirection = Direction.inputToDirection(button);
-            snake.updateDirection(newDirection);
-
-            snake.move();
-
-            if(snake.hasLost()){
-                isRunning = false;
-            }
-            else if(snake.hasEaten(apple)){
-                apple.generateNewPosition();
-                snake.addTail();
-            }
-            wait(Constants.GAME_DELAY_MS);
+            render();
+            control();
+            delayGame();
         }
     }
 
-    public static void wait(int time){
+    public void render(){
+        board.clear();
+        board.print(snake, apple);
+    }
+
+    public void control(){
+        char button = gameInput.getChar();
+        Direction newDirection = Direction.inputToDirection(button);
+        snake.updateDirection(newDirection);
+
+        snake.move();
+
+        if(snake.hasLost()){
+            isRunning = false;
+        }
+        else if(snake.hasEaten(apple)){
+            apple.generateNewPosition();
+            snake.addTail();
+        }
+    }
+
+
+    public void delayGame(){
         try {
-            Thread.sleep(time);
+            Thread.sleep(Constants.GAME_DELAY_MS);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
