@@ -1,7 +1,7 @@
 # JavaSnakeGame
 Simple Console Snake game using Java/C++
 
-### Used Commands
+### Launching game
 ***
 Compile Java file and generate .h file
 ```shell
@@ -15,4 +15,13 @@ Create dll file
 ```shell
 g++ -shared -o inputs.dll inputs.o
 ```
+Compile Main.java
+```shell
+javac Main.java
+```
+Run Main class
+```shell
+java Main
+```
+
 
